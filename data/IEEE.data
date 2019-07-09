@@ -1,6 +1,6 @@
 classes= 3
-train=./data/test103_dir_img.txt
-valid=./data/test103_dir_img.txt
+train=./data/train_dir_img.txt
+valid=./data/val_dir_img.txt
 names=data/IEEE.names
 backup=backup/
 eval=coco

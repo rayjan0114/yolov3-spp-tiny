@@ -249,7 +249,7 @@ def train(
 
         # Calculate mAP (always test final epoch, skip first 5 if opt.nosave)
 #         if not (opt.notest or (opt.nosave and epoch < 10)) or epoch == epochs - 1:
-        if (epoch % 3 == 0) or (epoch == epochs - 1): 
+        if (epoch % 20 == 0) or (epoch == epochs - 1): 
             with torch.no_grad():
                 results, maps = test.test(cfg, data_cfg, batch_size=batch_size, img_size=img_size_test, model=model,
                                           conf_thres=0.1)
@@ -303,7 +303,7 @@ def print_mutation(hyp, results):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=400, help='number of epochs')
-    parser.add_argument('--batch-size', type=int, default=6, help='batch size')
+    parser.add_argument('--batch-size', type=int, default=16, help='batch size')
     parser.add_argument('--accumulate', type=int, default=8, help='number of batches to accumulate before optimizing')
     parser.add_argument('--cfg', type=str, default='cfg/yolov3-spp-tiny.cfg', help='cfg file path')
     parser.add_argument('--data-cfg', type=str, default='data/IEEE.data', help='coco.data file path')

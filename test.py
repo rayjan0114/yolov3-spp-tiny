@@ -32,8 +32,8 @@ def test(
         else:  # darknet format
             _ = load_darknet_weights(model, weights)
 
-        if torch.cuda.device_count() > 1:
-            model = nn.DataParallel(model)
+#         if torch.cuda.device_count() > 1:
+#             model = nn.DataParallel(model)
     else:
         device = next(model.parameters()).device  # get model device
 
@@ -188,10 +188,10 @@ def test(
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='test.py')
-    parser.add_argument('--batch-size', type=int, default=6, help='size of each image batch')
-    parser.add_argument('--cfg', type=str, default='cfg/yolov3-IEEEspp.cfg', help='cfg file path')
+    parser.add_argument('--batch-size', type=int, default=16, help='size of each image batch')
+    parser.add_argument('--cfg', type=str, default='cfg/yolov3-spp-tiny.cfg', help='cfg file path')
     parser.add_argument('--data-cfg', type=str, default='data/IEEE.data', help='coco.data file path')
-    parser.add_argument('--weights', type=str, default='weights/backup100.pt', help='path to weights file')
+    parser.add_argument('--weights', type=str, default='weights/best.pt', help='path to weights file')
     parser.add_argument('--iou-thres', type=float, default=0.5, help='iou threshold required to qualify as detected')
     parser.add_argument('--conf-thres', type=float, default=0.001, help='object confidence threshold')
     parser.add_argument('--nms-thres', type=float, default=0.5, help='iou threshold for non-maximum suppression')
