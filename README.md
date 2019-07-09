@@ -11,13 +11,4 @@ Lighter version of yolov3-spp with some new enhancement.
 
 **Resume Training:** `python3 train.py --resume` to resume training from `weights/latest.pt`.
 
-# IEEE
-  Download the IEEE images from IEEEMMSP:
-  ```
-  IEEE
-  ├── lables
-  │   └── all──<put all the images here>
-  │
-  └── images
-      └── all──<put all the images here>
   
