@@ -1,0 +1,115 @@
+layer     filters    size              input                output
+    0 conv     32  3 x 3 / 1   416 x 416 x   3   ->   416 x 416 x  32
+    1 conv     64  3 x 3 / 2   416 x 416 x  32   ->   208 x 208 x  64
+    2 conv     32  1 x 1 / 1   208 x 208 x  64   ->   208 x 208 x  32
+    3 conv     64  3 x 3 / 1   208 x 208 x  32   ->   208 x 208 x  64
+    4 Shortcut Layer: 1
+    5 conv    128  3 x 3 / 2   208 x 208 x  64   ->   104 x 104 x 128
+    6 conv     64  1 x 1 / 1   104 x 104 x 128   ->   104 x 104 x  64
+    7 conv    128  3 x 3 / 1   104 x 104 x  64   ->   104 x 104 x 128
+    8 Shortcut Layer: 5
+    9 conv     64  1 x 1 / 1   104 x 104 x 128   ->   104 x 104 x  64
+   10 conv    128  3 x 3 / 1   104 x 104 x  64   ->   104 x 104 x 128
+   11 Shortcut Layer: 8
+   12 conv    256  3 x 3 / 2   104 x 104 x 128   ->    52 x  52 x 256
+   13 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   14 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   15 Shortcut Layer: 12
+   16 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   17 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   18 Shortcut Layer: 15
+   19 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   20 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   21 Shortcut Layer: 18
+   22 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   23 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   24 Shortcut Layer: 21
+   25 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   26 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   27 Shortcut Layer: 24
+   28 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   29 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   30 Shortcut Layer: 27
+   31 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   32 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   33 Shortcut Layer: 30
+   34 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+   35 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+   36 Shortcut Layer: 33
+   37 conv    512  3 x 3 / 2    52 x  52 x 256   ->    26 x  26 x 512
+   38 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   39 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   40 Shortcut Layer: 37
+   41 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   42 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   43 Shortcut Layer: 40
+   44 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   45 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   46 Shortcut Layer: 43
+   47 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   48 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   49 Shortcut Layer: 46
+   50 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   51 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   52 Shortcut Layer: 49
+   53 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   54 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   55 Shortcut Layer: 52
+   56 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   57 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   58 Shortcut Layer: 55
+   59 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   60 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   61 Shortcut Layer: 58
+   62 conv   1024  3 x 3 / 2    26 x  26 x 512   ->    13 x  13 x1024
+   79 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   80 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   81 conv     24  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x  24
+   82 detection
+   83 route  79
+   84 conv    256  1 x 1 / 1    13 x  13 x 512   ->    13 x  13 x 256
+   85 upsample            2x    13 x  13 x 256   ->    26 x  26 x 256
+   86 route  85 61
+   87 conv    256  1 x 1 / 1    26 x  26 x 768   ->    26 x  26 x 256
+   90 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   91 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   92 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   93 conv     24  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x  24
+   94 detection
+   95 route  91
+   96 conv    128  1 x 1 / 1    26 x  26 x 256   ->    26 x  26 x 128
+   97 upsample            2x    26 x  26 x 128   ->    52 x  52 x 128
+   98 route  97 36
+   99 conv    128  1 x 1 / 1    52 x  52 x 384   ->    52 x  52 x 128
+  104 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+  105 conv     24  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x  24
+  106 detection
+
+   63~78  -16
+   88~89  -2
+   100~103 -4
+
+   63 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   64 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   65 Shortcut Layer: 62
+   66 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   67 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   68 Shortcut Layer: 65
+   69 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   70 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   71 Shortcut Layer: 68
+   72 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   73 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   74 Shortcut Layer: 71
+   75 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   76 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   77 conv    512  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 512
+   78 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024
+   
+   88 conv    512  3 x 3 / 1    26 x  26 x 256   ->    26 x  26 x 512
+   89 conv    256  1 x 1 / 1    26 x  26 x 512   ->    26 x  26 x 256
+   
+  100 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+  101 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
+  102 conv    256  3 x 3 / 1    52 x  52 x 128   ->    52 x  52 x 256
+  103 conv    128  1 x 1 / 1    52 x  52 x 256   ->    52 x  52 x 128
