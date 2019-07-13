@@ -132,7 +132,7 @@ def train(
     dataset = LoadImagesAndLabels(train_path,
                                   img_size,
                                   batch_size,
-                                  augment=True,
+                                  augment=False,
                                   rect=rectangular_training)
 
     # Initialize distributed training

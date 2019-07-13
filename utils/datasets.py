@@ -249,7 +249,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
 
         # Augment colorspace
         augment_hsv = True
-        if self.augment and augment_hsv:
+        if augment_hsv:
             # SV augmentation by 50%
             fraction = 0.50  # must be < 1.0
             img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)  # hue, sat, val
@@ -267,7 +267,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         
         #cutout
         augment_cutout = True
-        if augment_cutout and self.augment:
+        if augment_cutout:
             img = cutout(img)
         
         # Letterbox
@@ -297,8 +297,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                 labels[:, 4] = ratioh * h * (x[:, 2] + x[:, 4] / 2) + padh
 
         # Augment image and labels
-        affine = False
-        if affine and self.augment:
+        
+        if self.augment:
             img, labels = random_affine(img, labels, degrees=(-5, 5), translate=(0.10, 0.10), scale=(0.90, 1.10))
 
         nL = len(labels)  # number of labels
@@ -476,7 +476,7 @@ def cutout(image, mask_size=64, p=0.5, random_color_range=30):
     #https://github.com/hysts/pytorch_cutout/blob/master/dataloader.py
     #https://towardsdatascience.com/when-conventional-wisdom-fails-revisiting-data-augmentation-for-self-driving-cars-4831998c5509
     if random.random() > p:
-            return image
+         return image
     multi_scale_mask_size = True
     if multi_scale_mask_size:
         #randomly pick a cutout size by scaler 2
@@ -496,7 +496,7 @@ def cutout(image, mask_size=64, p=0.5, random_color_range=30):
     #the random cutout box's center
     cx = random.randint(cxmin, cxmax)
     cy = random.randint(cymin, cymax)
-
+    
     xmin = max(0, cx - mask_size_half)
     ymin = max(0, cy - mask_size_half)
     xmax = min(w,  xmin + mask_size)
