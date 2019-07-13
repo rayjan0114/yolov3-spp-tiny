@@ -12,8 +12,8 @@ Lighter version of yolov3-spp with some new enhancement.
 **Resume Training:** `python3 train.py --resume` to resume training from `weights/latest.pt`.
 
 # New Enhancement
-Comparing to the origin repo from Glenn Jocher's, we do (1)class-wise kmeans (2)tanh shape for tuning hyperarameter iou_t
-(3)cutout data augmentation (4)yolov3-spp-tiny model structure.
+Comparing to the origin repo from Glenn Jocher's, we do (1).class-wise kmeans (2).tanh shape for tuning hyperarameter iou_t
+(3).cutout data augmentation (4).yolov3-spp-tiny model structure.
 
 #### This is an repo working on a competition, so more details will be released after the competition finished.
 
