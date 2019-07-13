@@ -264,7 +264,12 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
             img_hsv[:, :, 1] = S if a < 1 else S.clip(None, 255)
             img_hsv[:, :, 2] = V if b < 1 else V.clip(None, 255)
             cv2.cvtColor(img_hsv, cv2.COLOR_HSV2BGR, dst=img)
-
+        
+        #cutout
+        augment_cutout = True
+        if augment_cutout and self.augment:
+            img = cutout(img)
+        
         # Letterbox
         h, w, _ = img.shape
         if self.rect:
@@ -292,7 +297,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                 labels[:, 4] = ratioh * h * (x[:, 2] + x[:, 4] / 2) + padh
 
         # Augment image and labels
-        if self.augment:
+        affine = False
+        if affine and self.augment:
             img, labels = random_affine(img, labels, degrees=(-5, 5), translate=(0.10, 0.10), scale=(0.90, 1.10))
 
         nL = len(labels)  # number of labels
@@ -463,3 +469,44 @@ def convert_images2bmp():
             '/Users/glennjocher/PycharmProjects/', '../')
         with open(label_path.replace('5k', '5k_bmp'), 'w') as file:
             file.write(lines)
+            
+            
+def cutout(image, mask_size = 64, p = 0.5, mask_color=(0, 0, 0)):
+    #https://arxiv.org/abs/1708.04552
+    #https://github.com/hysts/pytorch_cutout/blob/master/dataloader.py
+    #https://towardsdatascience.com/when-conventional-wisdom-fails-revisiting-data-augmentation-for-self-driving-cars-4831998c5509
+    if random.random() > p:
+            return image
+    multi_scale_mask_size = True
+    if multi_scale_mask_size:
+        #randomly pick a cutout size by scaler 2
+        mask_size = random.randint((mask_size // 2), round(mask_size*2))  #$#
+        
+    mask_size_half = mask_size // 2
+    offset = 1 if mask_size % 2 == 0 else 0
+
+    
+    image = np.asarray(image).copy()
+    h, w = image.shape[:2]
+
+    #make sure the cutout locate witin the picture
+    cxmin, cxmax = mask_size_half, w + offset - mask_size_half
+    cymin, cymax = mask_size_half, h + offset - mask_size_half
+
+    #the random cutout box's center
+    cx = random.randint(cxmin, cxmax)
+    cy = random.randint(cymin, cymax)
+
+
+    xmin = max(0, cx - mask_size_half)
+    ymin = max(0, cy - mask_size_half)
+    xmax = min(w,  xmin + mask_size)
+    ymax = min(h,  ymin + mask_size)
+    random_color = True
+    if random_color:
+       mask_color = (random.randint(0,30),random.randint(0,30),random.randint(0,30))
+    image[ymin:ymax, xmin:xmax] = mask_color
+        
+
+    return image
+
