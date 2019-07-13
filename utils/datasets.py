@@ -471,7 +471,7 @@ def convert_images2bmp():
             file.write(lines)
             
             
-def cutout(image, mask_size = 64, p = 0.5, mask_color=(0, 0, 0)):
+def cutout(image, mask_size=64, p=0.5, random_color_range=30):
     #https://arxiv.org/abs/1708.04552
     #https://github.com/hysts/pytorch_cutout/blob/master/dataloader.py
     #https://towardsdatascience.com/when-conventional-wisdom-fails-revisiting-data-augmentation-for-self-driving-cars-4831998c5509
@@ -497,16 +497,14 @@ def cutout(image, mask_size = 64, p = 0.5, mask_color=(0, 0, 0)):
     cx = random.randint(cxmin, cxmax)
     cy = random.randint(cymin, cymax)
 
-
     xmin = max(0, cx - mask_size_half)
     ymin = max(0, cy - mask_size_half)
     xmax = min(w,  xmin + mask_size)
     ymax = min(h,  ymin + mask_size)
-    random_color = True
-    if random_color:
-       mask_color = (random.randint(0,30),random.randint(0,30),random.randint(0,30))
-    image[ymin:ymax, xmin:xmax] = mask_color
-        
-
+    
+    #random dark cutout
+    mask_color = (random.randint(0,random_color_range),
+          random.randint(0,random_color_range),random.randint(0,random_color_range))
+    image[ymin:ymax, xmin:xmax] = mask_color     
     return image
 
